@@ -1,6 +1,6 @@
 //Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
 document.oncontextmenu = function(){return false}
-Parse.initialize("T5RZzjjfyEsgqCz70SjvktgVgbhQKkkYna4iCoPk", "4UDsHpSoXlSbM1pIFZfuyC6dHgpK0QSwSzf5tXHJ");
+Parse.initialize("", "");
 //Recuperar
 var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
 var query = new Parse.Query(RegistroPasos);
@@ -122,7 +122,7 @@ testObject.save({foo: "bar"}, {
 });
 
 
-Parse.initialize("T5RZzjjfyEsgqCz70SjvktgVgbhQKkkYna4iCoPk", "4UDsHpSoXlSbM1pIFZfuyC6dHgpK0QSwSzf5tXHJ");
+Parse.initialize("", "");
 //Recuperar
 var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
 var query = new Parse.Query(RegistroPasos);
@@ -229,7 +229,7 @@ testObject.save({foo: "bar"}, {
 
 
     //Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
-Parse.initialize("T5RZzjjfyEsgqCz70SjvktgVgbhQKkkYna4iCoPk", "4UDsHpSoXlSbM1pIFZfuyC6dHgpK0QSwSzf5tXHJ");
+Parse.initialize("", "");
 //Recuperar
 var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
 var query = new Parse.Query(RegistroPasos);
