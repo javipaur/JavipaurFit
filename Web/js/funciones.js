@@ -1,27 +1,13 @@
-//Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
 document.oncontextmenu = function(){return false}
-Parse.initialize("", "");
-//Recuperar
-var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
-var query = new Parse.Query(RegistroPasos);
-/*query.get("xWMyZ4YEGZ", {
- success: function(gameScore) {
- var pasos = gameScore.get("Pasos");
- var fecha = gameScore.get("Fecha");
- var usuario = gameScore.get("Usuario");
- alert("El objeto recuperado es: "+gameScore.usuario+"  Pasos: "+gameScore.pasos+" Fecha: "+gameScore.fecha);
- },
- error: function(object, error) {
- alert("Error al parsear el objeto!"+error.toString());
- }
- });*/
 
-// var GameScore = Parse.Object.extend("GameScore");
-// var query = new Parse.Query(GameScore);
+//   Primera Grafica 
+
+Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+//Recuperar datos de parse
+var RegistroPasos= Parse.Object.extend("poner BD Parse");
+var query = new Parse.Query(RegistroPasos);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha");
-//query.ascending("Usuario");
-//query.equalTo("Usuario", "JavierP");
 query.find({
     success: function(results) {
         //alert("Successfully retrieved " + results.length + " scores.");
@@ -34,14 +20,14 @@ query.find({
         var aFechas=new Array();
 
         var tabla = '<table class="tab-score "><tr class="top-scrore-table"><td class="score-position "><b class="t1">Fecha</b></td><td><b class="t1">Pasos</b></td><td><b class="t1" >Usuario</b></td></tr>'
-        for (var i = 0; i < results.length; i++) {
+       
+		for (var i = 0; i < results.length; i++) {
             var object = results[i];
             var npasos = object.get("Pasos");
             var fecha = object.get("Fecha");
             var usuario = object.get("Usuario");
 
             //formamos array Usuarios
-
             if (aUsuarios.indexOf(usuario) == -1) {
                 aUsuarios.push(usuario);
                 aFechas[aUsuarios.length-1]=new Array();
@@ -53,13 +39,11 @@ query.find({
             //Formamos Array de pasos y fechas del usuario
             if (aFechas[iusu].indexOf(fecha) == -1) {
                 var fechaC='"'+fecha+'"';
-                //alert ( "fecha "+fechaC);
                 aFechas[iusu].push(fechaC);
                 aPasos[iusu].push("0");
             }
             ifechas=aFechas[iusu].indexOf(fechaC);
             var npasosC='"'+npasos+'"';
-            //alert ( "npasos "+npasosC);
             aPasos[iusu][ifechas]=npasosC;
 
             //Visualizamos la tabla
@@ -71,37 +55,29 @@ query.find({
 
 
         }
+		
         tabla += '</table>'
-        // document.getElementById('tablas').innerHTML = tabla;
-        //alert(object.id + ' - ' + object.get('playerName'));
-        // alert("El objeto recuperado es: "+usuario+"  Pasos: "+npasos+" Fecha: "+fecha);
-        // alert("La fecha es "+object.get("Fecha"));
-        // alert("Usuarios: "+usuarios.toString());
-        // alert("Fechas: "+fechas.toString());
-        var data="var data=[";
+		///formateamos los datos para visualizarlos en plotly
+        var data="var data=[";				
         for(var i = 0; i < aUsuarios.length; i++){
-            // var trace0 = "{x: ['"+aFechas[i]+"'],y:['"+aPasos[i]+"'],mode: 'lines+markers',name:'"+aUsuarios[i]+"',type: 'bar'};";
-            //var trace0 = "{x: ["+aFechas[i]+"],y:["+aPasos[i]+"],mode: 'lines+markers',name:'"+aUsuarios[i]+"',type: 'bar'};";
             eval("var trace" + i + "= {x: ["+aFechas[i]+"],y:["+aPasos[i]+"],mode: 'lines+markers',name:'"+aUsuarios[i]+"',type: 'bar'};");
-
             data = data+"trace" + i ;
-
             if(i<aUsuarios.length-1){
                 data = data+",";
             }else{
                 data = data+"];";
             }
-            // alert(data);
         }
 
         eval(data);
-        //var data = [trace0, trace1,trace2];
+		
         var layout = {legend: {
             y: 5,
             traceorder: 'reversed',
             font: {size: 16},
             yref: 'paper'
         }};
+		
         Plotly.newPlot('myDiv', data, layout);
 
     },
@@ -109,22 +85,13 @@ query.find({
         alert("Error: " + error.code + " " + error.message);
     }
 });
-//Insertar
-var TestObject = Parse.Object.extend("TestObject");
-var testObject = new TestObject();
-testObject.save({foo: "bar"}, {
-    success: function(object) {
-        $(".success").show();
-    },
-    error: function(model, error) {
-        $(".error").show();
-    }
-});
 
 
-Parse.initialize("", "");
-//Recuperar
-var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
+//   Segunda Grafica 
+
+Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+//Recuperar datos de parse
+var RegistroPasos= Parse.Object.extend("poner BD Parse");
 var query = new Parse.Query(RegistroPasos);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha","Usuario");
@@ -133,7 +100,6 @@ query.find({
     success: function(results) {
         //alert("Successfully retrieved " + results.length + " scores.");
         // Do something with the returned Parse.Object values
-
 
         var iusu,ifechas,ipasos=0;
 
@@ -170,14 +136,11 @@ query.find({
         tabla += '</table>'
         document.getElementById('tablas1').innerHTML = tabla;
         var xValue = tUsuarios;
-        //alert (xValue);
         var yValue = tPasos;
-        //alert (yValue);
         var trace1 = {
             x: xValue,
             y: yValue,
-            type: 'bar',
-            //text: ['27% market share', '24% market share', '19% market share'],
+            type: 'bar',           
             marker: {
                 color: 'rgb(158,202,225)',
                 opacity: 0.6,
@@ -215,46 +178,19 @@ query.find({
         alert("Error: " + error.code + " " + error.message);
     }
 });
-//Insertar
-var TestObject = Parse.Object.extend("TestObject");
-var testObject = new TestObject();
-testObject.save({foo: "bar"}, {
-    success: function(object) {
-        $(".success").show();
-    },
-    error: function(model, error) {
-        $(".error").show();
-    }
-});
 
+//Tercera Grafica 
 
-    //Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
-Parse.initialize("", "");
-//Recuperar
-var RegistroPasos= Parse.Object.extend("ObjetoRegistroPasos");
+Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+//Recuperar datos de parse
+var RegistroPasos= Parse.Object.extend("poner BD Parse");
 var query = new Parse.Query(RegistroPasos);
-/*query.get("xWMyZ4YEGZ", {
- success: function(gameScore) {
- var pasos = gameScore.get("Pasos");
- var fecha = gameScore.get("Fecha");
- var usuario = gameScore.get("Usuario");
- alert("El objeto recuperado es: "+gameScore.usuario+"  Pasos: "+gameScore.pasos+" Fecha: "+gameScore.fecha);
- },
- error: function(object, error) {
- alert("Error al parsear el objeto!"+error.toString());
- }
- });*/
-
-// var GameScore = Parse.Object.extend("GameScore");
-// var query = new Parse.Query(GameScore);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha","Usuario");
-//query.ascending("Usuario");
-//query.equalTo("Usuario", "JavierP");
+
 query.find({
     success: function(results) {
-        //alert("Successfully retrieved " + results.length + " scores.");
-        // Do something with the returned Parse.Object values
+       
 
         var aFechas=new Array();
         var iusu,ifechas,ipasos=0;
@@ -300,7 +236,7 @@ query.find({
             var npasosC='"'+npasos+'"';
             var npasosF=parseInt(npasos).toLocaleString();
             aPasos[ifechas][iusu]=npasosC.toLocaleString();
-            //alert ("--> "+aPasos[ifechas]+" -IF- "+ifechas+"-IU-"+iusu+"-Co-"+aPasos[ifechas][iusu]);
+            
             //Visualizamos la tabla
             tabla += '<tr>' +
                 '<td class="score-position" style="font-weight: normal; font-size: 15px">'+fecha+'</td>' +
@@ -312,36 +248,23 @@ query.find({
         }
         tabla += '</table>'
         document.getElementById('tablas2').innerHTML = tabla;
-        //alert(object.id + ' - ' + object.get('playerName'));
-        // alert("El objeto recuperado es: "+usuario+"  Pasos: "+npasos+" Fecha: "+fecha);
-        // alert("La fecha es "+object.get("Fecha"));
-        // alert("Usuarios: "+usuarios.toString());
-        // alert("Fechas: "+fechas.toString());
         var xValue = tUsuarios;
-        //alert (xValue);
         var yValue = tPasos;
-        //alert (yValue);
         var data="var data=[";
-        //alert (data);
+        
 
-        for(var i = 0; i < aFechas.length; i++){
-
-            //eval(" var trace" + i + "= {x:"+ xValue +",y:"+ yValue +",name:"+aFechas[i]+",type: 'bar'};");
-            eval(" var trace" + i + "= {x: ["+aUsuario[i]+"],y:["+aPasos[i]+"],name:"+aFechas[i]+",type: 'bar'};");
-            //var trace0 = "{x:"+ xValue +",y:"+ yValue +",name:"+aFechas[i]+",type: 'bar'};";
-            //alert  (trace0);
+        for(var i = 0; i < aFechas.length; i++){            
+            eval(" var trace" + i + "= {x: ["+aUsuario[i]+"],y:["+aPasos[i]+"],name:"+aFechas[i]+",type: 'bar'};");           
             data = data+"trace" + i ;
-
             if(i<aFechas.length-1){
                 data = data+",";
             }else{
                 data = data+"];";
-            }
-            // alert(data);
+            }            
         }
 
         eval(data);
-        //var data = [trace0, trace1,trace2];
+       
         var annotationContent = [];
         var layout = {
             yaxis:{title: 'Número de pasos'},
@@ -370,14 +293,4 @@ query.find({
         alert("Error: " + error.code + " " + error.message);
     }
 });
-//Insertar
-var TestObject = Parse.Object.extend("TestObject");
-var testObject = new TestObject();
-testObject.save({foo: "bar"}, {
-    success: function(object) {
-        $(".success").show();
-    },
-    error: function(model, error) {
-        $(".error").show();
-    }
-});
+
