@@ -1,10 +1,13 @@
 document.oncontextmenu = function(){return false}
+var clienteIdParse="poner cliente id parse";
+var aplicationIdParse="poner aplicacion id parse";
+var nombreBdParse="poner BD Parse";
 
 //   Primera Grafica 
 
-Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+Parse.initialize(clienteIdParse,aplicationIdParse);
 //Recuperar datos de parse
-var RegistroPasos= Parse.Object.extend("poner BD Parse");
+var RegistroPasos= Parse.Object.extend(nombreBdParse);
 var query = new Parse.Query(RegistroPasos);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha");
@@ -89,9 +92,9 @@ query.find({
 
 //   Segunda Grafica 
 
-Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+Parse.initialize(clienteIdParse,aplicationIdParse);
 //Recuperar datos de parse
-var RegistroPasos= Parse.Object.extend("poner BD Parse");
+var RegistroPasos= Parse.Object.extend(nombreBdParse);
 var query = new Parse.Query(RegistroPasos);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha","Usuario");
@@ -181,9 +184,9 @@ query.find({
 
 //Tercera Grafica 
 
-Parse.initialize("poner cliente id parse","poner aplicacion id parse");
+Parse.initialize(clienteIdParse,aplicationIdParse);
 //Recuperar datos de parse
-var RegistroPasos= Parse.Object.extend("poner BD Parse");
+var RegistroPasos= Parse.Object.extend(nombreBdParse);
 var query = new Parse.Query(RegistroPasos);
 query.greaterThan("Usuario", " ");
 query.ascending("Fecha","Usuario");
