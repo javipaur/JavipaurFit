@@ -1,5 +1,5 @@
 # JavipaurFit
-Proyecto 2016
+Proyecto fin de curso Multiplataforma 2016
 
 
 Para contruir este proyecto hemos utilizado 3 fases de construccion:
