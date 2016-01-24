@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JavipaurFit</string>
+    <string name="pasos">Pasos:</string>
+    <string name="correo">Correo:</string>
+    <string name="titulo">Informacion del usuario</string>
+    <string name="nombre">Nombre:</string>
+</resources>
