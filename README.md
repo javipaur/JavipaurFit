@@ -2,7 +2,7 @@
 Proyecto fin de curso Multiplataforma 2016
 
 
-Para contruir este proyecto hemos utilizado 3 fases de construccion:
+Para construir este proyecto hemos utilizado 3 fases de construccion:
 1-Andorid-Google Fit
 2-Parse
 3-Página web con Plotly.js
